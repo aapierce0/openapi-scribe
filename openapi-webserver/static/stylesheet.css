@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+code {
+    font-family: 'Inconsolata', monospace;
+}
+
+
+
+.specification {
+    margin: 1em 4em 4em;
+}
+
+.path > h1 {
+    font-family: 'Inconsolata', monospace;
+    font-size: 2em;
+    margin-left: -1em;
+    margin-top: 1em;
+    margin-bottom: 0.3em;
+}
+
+.path-item {
+    background-color: hsl(0, 0%, 90%);
+    margin-bottom: 1em;
+}
+
+.path-item > header {
+    background-color: hsl(0, 0%, 80%);
+    margin-bottom: 0.4em;
+
+}
+.path-item > header > h2,
+.response > header > h2 {
+    background-color: hsl(0, 0%, 30%);
+    color: #FFF;
+    display: inline-block;
+    padding: 0.2em 0.75em 0.2em 0.6em;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-right: 0.6em;
+}
+
+.method-get.path-item {
+    background-color: hsl(120, 50%, 90%);
+}
+
+.method-get.path-item > header {
+    background-color: hsl(120, 40%, 75%);
+}
+
+.method-get.path-item > header > h2,
+.method-get .response > header > h2{
+    background-color: hsl(120, 80%, 30%);
+}
+
+
+
+
+.operation {
+    margin-left: 1em;
+    padding-bottom: 1em;
+}
+
+.operation table th,
+.operation table td {
+    padding: 0.2em 0.4em;
+    text-align: left;
+}
+
+.operation table th {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.operation table td {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.response > header {
+    border-top: solid 2px hsl(0, 0%, 30%);
+    margin-top: 1em;
+    margin-bottom: 0.4em;
+}
+
+.response > header > h2 {
+    font-size: 1.0em;
+    margin-top: -2px;
+    padding: 0.2em 0.75em 0.2em 0.6em;
+}
+
+.response > .description {
+    margin: 0.4em 0em;
+}
+
+
+.method-get .response > header {
+    border-top-color:hsl(120, 80%, 30%);
+}
+
+
+
+
+.code-wrapper {
+    padding: 0.4em 0.6em;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FFF;
+}
