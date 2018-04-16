@@ -48,18 +48,6 @@ code {
     margin-right: 0.6em;
 }
 
-.method-get.path-item {
-    background-color: hsl(120, 50%, 90%);
-}
-
-.method-get.path-item > header {
-    background-color: hsl(120, 40%, 75%);
-}
-
-.method-get.path-item > header > h2,
-.method-get .response > header > h2{
-    background-color: hsl(120, 80%, 30%);
-}
 
 
 
@@ -101,9 +89,7 @@ code {
 }
 
 
-.method-get .response > header {
-    border-top-color:hsl(120, 80%, 30%);
-}
+
 
 
 
@@ -112,4 +98,105 @@ code {
     padding: 0.4em 0.6em;
     background-color: rgba(0, 0, 0, 0.5);
     color: #FFF;
+    overflow-x: scroll;
+}
+
+
+
+/* Colors for different methods */
+
+.method-get.path-item {
+    background-color: hsl(120, 50%, 90%);
+}
+
+.method-get.path-item > header {
+    background-color: hsl(120, 40%, 75%);
+}
+
+.method-get.path-item > header > h2,
+.method-get .response > header > h2{
+    background-color: hsl(120, 80%, 30%);
+}
+
+.method-get .response > header {
+    border-top-color:hsl(120, 80%, 30%);
+}
+
+
+
+.method-post.path-item {
+    background-color: hsl(200, 50%, 90%);
+}
+
+.method-post.path-item > header {
+    background-color: hsl(200, 40%, 75%);
+}
+
+.method-post.path-item > header > h2,
+.method-post .response > header > h2{
+    background-color: hsl(200, 80%, 30%);
+}
+
+.method-post .response > header {
+    border-top-color:hsl(200, 80%, 30%);
+}
+
+
+
+.method-put.path-item {
+    background-color: hsl(60, 50%, 90%);
+}
+
+.method-put.path-item > header {
+    background-color: hsl(60, 40%, 75%);
+}
+
+.method-put.path-item > header > h2,
+.method-put .response > header > h2{
+    background-color: hsl(60, 80%, 30%);
+}
+
+.method-put .response > header {
+    border-top-color:hsl(60, 80%, 30%);
+}
+
+
+
+
+.method-delete.path-item {
+    background-color: hsl(0, 50%, 90%);
+}
+
+.method-delete.path-item > header {
+    background-color: hsl(0, 40%, 75%);
+}
+
+.method-delete.path-item > header > h2,
+.method-delete .response > header > h2{
+    background-color: hsl(0, 80%, 30%);
+}
+
+.method-delete .response > header {
+    border-top-color:hsl(0, 80%, 30%);
+}
+
+
+
+
+
+.method-patch.path-item {
+    background-color: hsl(300, 50%, 90%);
+}
+
+.method-patch.path-item > header {
+    background-color: hsl(300, 40%, 75%);
+}
+
+.method-patch.path-item > header > h2,
+.method-patch .response > header > h2{
+    background-color: hsl(300, 80%, 30%);
+}
+
+.method-patch .response > header {
+    border-top-color:hsl(300, 80%, 30%);
 }

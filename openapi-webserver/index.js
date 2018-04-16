@@ -8,20 +8,6 @@ function OpenAPIWebserver(filePath) {
     this.filePath = filePath;
 }
 
-function fetchOpenAPIDocument(callback) {
-    Specification.readFile(filePath, (error, spec) => {
-
-        // If an error occurred, pass it up.
-        if (error) { callback(error); return }
-
-        // Render the open API spec.
-        const renderer = new OpenAPIRenderer(spec);
-        renderer.render((error, result) => {
-            callback(error, result)
-        });
-    });
-}
-
 OpenAPIWebserver.prototype.listen = function(port, callback) {
 
     const app = express();

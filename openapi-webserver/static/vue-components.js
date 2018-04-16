@@ -7,10 +7,16 @@ function generateExampleObject(schema) {
         return _(schema.properties).mapObject(generateExampleObject);
     }
 
+    if (_(schema).has('example')) {
+        // Return the example value that was defined in the document.
+        return schema.example;
+    }
+
     switch (schema.type) {
         case "string": return "string";
         case "integer": return 1;
         case "number": return 1.0;
+        case "boolean": return true;
         case "object":
             // Create each of the documented properties, and generate an example of it
             return _(schema.properties).mapObject(generateExampleObject);
@@ -18,7 +24,7 @@ function generateExampleObject(schema) {
             const singleObject = generateExampleObject(schema.items);
             return [singleObject];
         default:
-            return "?????????";
+            return `<<<${schema.type}>>>`;
     }
 }
 
@@ -36,20 +42,26 @@ Vue.component('openapi-spec', {
 
 Vue.component('openapi-path', {
     props: ['path', 'pathItem'],
+    computed: {
+        methods: function() {
+            return _(this.pathItem).pick('get', 'post', 'put', 'delete', 'patch')
+        }
+    },
     template: `
 <div class="path">
     <h1>{{path}}</h1>
     <openapi-path-item 
-        v-for="(operation, method) in pathItem" 
+        v-for="(operation, method) in methods" 
         v-bind:method="method" 
         v-bind:operation="operation"
+        v-bind:pathParameters="pathItem.parameters"
         ></openapi-path-item>
 </div>
 `,
 });
 
 Vue.component('openapi-path-item', {
-    props: ['method', 'operation'],
+    props: ['method', 'operation', 'pathParameters'],
     computed: {
         methodClass: function() {
             return `method-${this.method}`;
@@ -58,15 +70,23 @@ Vue.component('openapi-path-item', {
     template: `
 <div class="path-item" v-bind:class="methodClass">
     <header><h2>{{method}}</h2><span class="summary">{{operation.summary}}</span></header>
-    <openapi-operation v-bind:operation="operation"></openapi-operation>
+    <openapi-operation 
+        v-bind:operation="operation"
+        v-bind:pathParameters="pathParameters"
+        ></openapi-operation>
 </header>`
 });
 
 Vue.component('openapi-operation', {
-    props: ['operation'],
+    props: ['operation', 'pathParameters'],
+    computed: {
+        allParameters: function() {
+            return _.union(this.pathParameters, this.operation.parameters);
+        }
+    },
     template: `
 <div class="operation">
-    <table v-if="operation.parameters">
+    <table v-if="allParameters">
         <thead>
             <tr>
                 <th>Parameter</th>
@@ -77,7 +97,7 @@ Vue.component('openapi-operation', {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="parameter in operation.parameters">
+            <tr v-for="parameter in allParameters">
                 <td>{{parameter.name}}</td>
                 <td>{{parameter.in}}</td>
                 <td>{{parameter.schema.type}}</td>
@@ -133,7 +153,6 @@ Vue.component('openapi-response-content', {
         exampleObject: function() {
             const obj = generateExampleObject(this.content.schema);
             const stringify = JSON.stringify(obj, null, 2);
-            console.log(stringify);
             return stringify;
         }
     },
