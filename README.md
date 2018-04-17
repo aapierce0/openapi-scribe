@@ -10,7 +10,7 @@ This project aims to provide a simple tool for serving Open API 3.0 documentatio
 
 1. Install nodejs (https://nodejs.org)
 2. Install project dependencies (`npm install`)
-3. Run: `node ./index.js -f FILEPATH --server PORT`
+3. Run: `node ./cli.js -f FILEPATH --server PORT`
 
 ## Wishlist
 
