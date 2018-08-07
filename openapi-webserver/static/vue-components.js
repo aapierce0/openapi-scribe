@@ -81,7 +81,8 @@ Vue.component('openapi-operation', {
     props: ['operation', 'pathParameters'],
     computed: {
         allParameters: function() {
-            return _.union(this.pathParameters, this.operation.parameters);
+            const result = _.union(this.pathParameters, this.operation.parameters);
+            return (result.length > 0 ? result : null);
         }
     },
     template: `
@@ -107,11 +108,28 @@ Vue.component('openapi-operation', {
         </tbody>
     </table>
     
+    <openapi-request-body
+        v-bind:requestBody="operation.requestBody"
+        ></openapi-request-body>
+    
     <openapi-response 
         v-for="(response, statusCode) in operation.responses" 
         v-bind:statusCode="statusCode" 
         v-bind:response="response"
         ></openapi-response>
+</div>
+`
+});
+
+Vue.component('openapi-request-body', {
+    props: ['requestBody'],
+    template: `
+<div class="request">
+    <openapi-response-content 
+        v-for="(content, type) in requestBody.content"
+        v-bind:contentType="type"
+        v-bind:content="content"
+        ></openapi-response-content>
 </div>
 `
 });
@@ -162,7 +180,6 @@ Vue.component('openapi-response-content', {
     <div class="code-wrapper">
         <pre><code>{{exampleObject}}</code></pre>
     </div>
-
 </div>
 `
 });
